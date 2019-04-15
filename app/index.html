@@ -1,9 +1,14 @@
+<!DOCTYPE html>
 <html>
-
-<body>
-
+<body onload="myFunction()">
     <h1>Bikes website</h1>
-
-    I like bikes
+    <script> 
+        function myFunction() {
+            var data = jQuery.getJSON("https://jujhar.com/bikes.json");
+            var number = "123";
+            document.getElementById("myText").innerHTML = data;
+    }
+    </script>
+    <h1>"the value for number is: " <span id="myText"></span></h1>
 </body>
 </html>
