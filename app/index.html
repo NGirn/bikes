@@ -13,7 +13,7 @@
 
 <script>
     function navsFunction() {
-        jQuery.getJSON("bikes.json", function (data) {
+        jQuery.getJSON("/bikes.json", function (data) {
             var bikeName = data.items[4].name;
             document.getElementById("myText").innerHTML = bikeName;
         });
