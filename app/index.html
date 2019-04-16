@@ -5,8 +5,16 @@
     <script src="js/jquery.min.js"></script>
 </head>
 
-<body onload="navsFunction()">
+<body >
     <h1>Bikes Website</h1>
+
+    <label for="class-select">Choose a class: </label>
+        <select id="class-select" onchange="navsFunction($(this).val())">
+            <option value="All">All</option>
+            <option value="Race">Race</option>
+            <option value="Endurance">Endurance</option>
+            <option value="Comfort">Comfort</option>
+        </select>
 
     <div id="BikeContainer">
         <!-- container for bikes -->
@@ -14,17 +22,17 @@
 </body>
 
 <script>
-    function navsFunction() {
-        var input = 'Endurance';
+    function navsFunction(className) {
+        console.log(className);
 
         jQuery.getJSON("/bikes.json", function (data) {
-            if (input === 'All') {
+            if (className === 'All') {
                 for (var row in data.items) {
                     var allArray = [];
                     allArray.push(data.items[row]);
                     console.log(allArray);
                 }
-            } else if (input === 'Endurance') {
+            } else if (className === 'Endurance') {
                 for (var row in data.items) {
 
                     if (data.items[row].class.includes('endurance')) {
@@ -33,15 +41,37 @@
 
                         $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
                         $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
-
-                        console.log(enduranceArray);
+                        $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
+                        $("#BikeContainer").append(`<p>Endurance</p>`);
                     }
 
                 }
+            } else if (className === 'Race') {
+                for (var row in data.items) {
+                    if (data.items[row].class.includes('race')) {
+                        var raceArray = [];
+                        raceArray.push(data.items[row]);
+
+                        $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
+                        $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
+                        $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
+                        $("#BikeContainer").append(`<p>Race</p>`);
+                    }
+                }
+            } else if (className === 'Comfort') {
+                for (var row in data.items) {
+                    if (data.items[row].class.includes('comfort')) {
+                        var comfortArray = [];
+                        comfortArray.push(data.items[row]);
+
+                        $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
+                        $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
+                        $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
+                        $("#BikeContainer").append(`<p>Comfort</p>`);
+                    }
+                }
             }
-            //for (var row in data.items) {
-            //console.log(data.items[row].image);
-            //}
+
         });
 
     }
