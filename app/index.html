@@ -23,9 +23,11 @@
 
 <script>
     function navsFunction(className) {
-        console.log(className);
+        
 
         jQuery.getJSON("/bikes.json", function (data) {
+            
+            
             if (className === 'All') {
                 for (var row in data.items) {
                     var allArray = [];
@@ -33,12 +35,12 @@
                     console.log(allArray);
                 }
             } else if (className === 'Endurance') {
+                $("#BikeContainer").html(`<p></p>`);
                 for (var row in data.items) {
 
                     if (data.items[row].class.includes('endurance')) {
                         var enduranceArray = [];
                         enduranceArray.push(data.items[row]);
-
                         $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
                         $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
                         $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
@@ -47,11 +49,11 @@
 
                 }
             } else if (className === 'Race') {
+                $("#BikeContainer").html(`<p></p>`);
                 for (var row in data.items) {
                     if (data.items[row].class.includes('race')) {
                         var raceArray = [];
-                        raceArray.push(data.items[row]);
-
+                        raceArray.push(data.items[row]);                   
                         $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
                         $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
                         $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
@@ -59,11 +61,11 @@
                     }
                 }
             } else if (className === 'Comfort') {
+                $("#BikeContainer").html(`<p></p>`);
                 for (var row in data.items) {
                     if (data.items[row].class.includes('comfort')) {
                         var comfortArray = [];
                         comfortArray.push(data.items[row]);
-
                         $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
                         $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
                         $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
