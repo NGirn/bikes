@@ -1,4 +1,27 @@
 <!DOCTYPE html>
+<style>
+    #BikeContainer {
+        text-align: center;
+        font-size: 25px;
+        font-family: Arial;
+    }
+    #heading {
+        font-size: 40px;
+        background-color: grey;
+        padding: 50px;
+        margin: 20px;
+        text-align: center;
+        font-family: Arial;
+    }
+    #dropdown {
+        font-size: 30px;
+        text-align: center;
+        margin: 50px;
+        padding: 20px;
+        font-family: Arial;
+        background-color: grey;
+    }
+</style>
 <html>
 
 <head>
@@ -6,15 +29,16 @@
 </head>
 
 <body >
-    <h1>Bikes Website</h1>
-
-    <label for="class-select">Choose a class: </label>
-        <select id="class-select" onchange="navsFunction($(this).val())">
-            <option value="All">All</option>
-            <option value="Race">Race</option>
-            <option value="Endurance">Endurance</option>
-            <option value="Comfort">Comfort</option>
-        </select>
+    <h1 id="heading">Bikes Website</h1>
+    <div id="dropdown">
+        <label for="class-select">Choose a class: </label>
+            <select id="class-select" onchange="navsFunction($(this).val())">
+                <option value="All">Select</option>
+                <option value="Race">Race</option>
+                <option value="Endurance">Endurance</option>
+                <option value="Comfort">Comfort</option>
+            </select>
+    </div>
 
     <div id="BikeContainer">
         <!-- container for bikes -->
@@ -23,21 +47,15 @@
 
 <script>
     function navsFunction(className) {
-        
-
         jQuery.getJSON("/bikes.json", function (data) {
-            
-            
             if (className === 'All') {
                 for (var row in data.items) {
                     var allArray = [];
                     allArray.push(data.items[row]);
-                    console.log(allArray);
                 }
             } else if (className === 'Endurance') {
                 $("#BikeContainer").html(`<p></p>`);
                 for (var row in data.items) {
-
                     if (data.items[row].class.includes('endurance')) {
                         var enduranceArray = [];
                         enduranceArray.push(data.items[row]);
@@ -46,7 +64,6 @@
                         $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
                         $("#BikeContainer").append(`<p>Endurance</p>`);
                     }
-
                 }
             } else if (className === 'Race') {
                 $("#BikeContainer").html(`<p></p>`);
@@ -75,8 +92,6 @@
             }
 
         });
-
     }
 </script>
-
 </html>
