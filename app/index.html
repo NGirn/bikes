@@ -4,6 +4,12 @@
         text-align: center;
         font-size: 25px;
         font-family: Arial;
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
     }
     #heading {
         font-size: 40px;
@@ -47,6 +53,9 @@
 
 <script>
     function navsFunction(className) {
+        // blank out the div
+        $("#BikeContainer").html(`<p></p>`);
+
         jQuery.getJSON("/bikes.json", function (data) {
             if (className === 'All') {
                 for (var row in data.items) {
@@ -54,7 +63,7 @@
                     allArray.push(data.items[row]);
                 }
             } else if (className === 'Endurance') {
-                $("#BikeContainer").html(`<p></p>`);
+                
                 for (var row in data.items) {
                     if (data.items[row].class.includes('endurance')) {
                         var enduranceArray = [];
@@ -66,7 +75,7 @@
                     }
                 }
             } else if (className === 'Race') {
-                $("#BikeContainer").html(`<p></p>`);
+        
                 for (var row in data.items) {
                     if (data.items[row].class.includes('race')) {
                         var raceArray = [];
@@ -78,7 +87,7 @@
                     }
                 }
             } else if (className === 'Comfort') {
-                $("#BikeContainer").html(`<p></p>`);
+        
                 for (var row in data.items) {
                     if (data.items[row].class.includes('comfort')) {
                         var comfortArray = [];
