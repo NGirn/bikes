@@ -69,6 +69,16 @@
 				"large": "https://jujhar.com/images/bikes/776400_light.jpg"
 			},
 			"class": ["comfort"]
+		},
+				{
+			"id": 8,
+			"name": "M3 SL Road",
+			"description": "Turbocharged With the SL road, it's quick and comfortable to work and you can even do a relaxing after work ride.",
+			"image": {
+				"thumb": "https://jujhar.com/images/bikes/776400_overview.png",
+				"large": "https://jujhar.com/images/bikes/776400_light.jpg"
+			},
+			"class": ["race"]
 		}
 	]
 }

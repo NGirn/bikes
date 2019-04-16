@@ -7,16 +7,22 @@
 
 <body onload="navsFunction()">
     <h1>Bikes Website</h1>
-
-    The value for number is: <span id="myText"></span>
 </body>
 
 <script>
     function navsFunction() {
         jQuery.getJSON("/bikes.json", function (data) {
             var bikeName = data.items[4].name;
-            document.getElementById("myText").innerHTML = bikeName;
+            console.log(data.items)
+            for (var row in data.items) {
+                //var bikeName = data.items[4].name;
+                console.log(`our row is=${row} don't you see`);
+                console.log(data.items[row].description);
+                // var bike;
+                // var bike = bike.append(data.items.name);
+            }
         });
+
     }
 </script>
 
