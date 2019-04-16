@@ -7,20 +7,41 @@
 
 <body onload="navsFunction()">
     <h1>Bikes Website</h1>
+
+    <div id="BikeContainer">
+        <!-- container for bikes -->
+    </div>
 </body>
 
 <script>
     function navsFunction() {
+        var input = 'Endurance';
+
         jQuery.getJSON("/bikes.json", function (data) {
-            var bikeName = data.items[4].name;
-            console.log(data.items)
-            for (var row in data.items) {
-                //var bikeName = data.items[4].name;
-                console.log(`our row is=${row} don't you see`);
-                console.log(data.items[row].description);
-                // var bike;
-                // var bike = bike.append(data.items.name);
+            if (input === 'All') {
+                for (var row in data.items) {
+                    var allArray = [];
+                    allArray.push(data.items[row]);
+                    console.log(allArray);
+                }
+            } else if (input === 'Endurance') {
+                for (var row in data.items) {
+
+                    if (data.items[row].class.includes('endurance')) {
+                        var enduranceArray = [];
+                        enduranceArray.push(data.items[row]);
+
+                        $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
+                        $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
+
+                        console.log(enduranceArray);
+                    }
+
+                }
             }
+            //for (var row in data.items) {
+            //console.log(data.items[row].image);
+            //}
         });
 
     }
