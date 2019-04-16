@@ -11,6 +11,7 @@
         margin: 1em 0;
         padding: 0;
     }
+
     #heading {
         font-size: 40px;
         background-color: grey;
@@ -19,6 +20,7 @@
         text-align: center;
         font-family: Arial;
     }
+
     #dropdown {
         font-size: 30px;
         text-align: center;
@@ -34,16 +36,17 @@
     <script src="js/jquery.min.js"></script>
 </head>
 
-<body >
+<body>
     <h1 id="heading">Bikes Website</h1>
     <div id="dropdown">
         <label for="class-select">Choose a class: </label>
-            <select id="class-select" onchange="navsFunction($(this).val())">
-                <option value="All">Select</option>
-                <option value="Race">Race</option>
-                <option value="Endurance">Endurance</option>
-                <option value="Comfort">Comfort</option>
-            </select>
+        <select id="class-select" onchange="navsFunction($(this).val())">
+            <option>Select</option>
+            <option value="all">All Bikes</option>
+            <option value="race">Race</option>
+            <option value="endurance">Endurance</option>
+            <option value="comfort">Comfort</option>
+        </select>
     </div>
 
     <div id="BikeContainer">
@@ -52,55 +55,40 @@
 </body>
 
 <script>
-    function navsFunction(className) {
-        // blank out the div
-        $("#BikeContainer").html(`<p></p>`);
 
+    function navsFunction(bikeClassName) {
         jQuery.getJSON("/bikes.json", function (data) {
-            if (className === 'All') {
-                for (var row in data.items) {
-                    var allArray = [];
-                    allArray.push(data.items[row]);
+            var dataToRender = [];
+            // build up only the bikes we want rendered
+            for (var row in data.items) {
+                if (bikeClassName === 'all') {
+                    dataToRender.push(data.items[row]);
                 }
-            } else if (className === 'Endurance') {
-                
-                for (var row in data.items) {
-                    if (data.items[row].class.includes('endurance')) {
-                        var enduranceArray = [];
-                        enduranceArray.push(data.items[row]);
-                        $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
-                        $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
-                        $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
-                        $("#BikeContainer").append(`<p>Endurance</p>`);
-                    }
-                }
-            } else if (className === 'Race') {
-        
-                for (var row in data.items) {
-                    if (data.items[row].class.includes('race')) {
-                        var raceArray = [];
-                        raceArray.push(data.items[row]);                   
-                        $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
-                        $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
-                        $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
-                        $("#BikeContainer").append(`<p>Race</p>`);
-                    }
-                }
-            } else if (className === 'Comfort') {
-        
-                for (var row in data.items) {
-                    if (data.items[row].class.includes('comfort')) {
-                        var comfortArray = [];
-                        comfortArray.push(data.items[row]);
-                        $("#BikeContainer").append(`<p>${data.items[row].name}</p>`);
-                        $("#BikeContainer").append(`<img src='${data.items[row].image.thumb}'/>`);
-                        $("#BikeContainer").append(`<p>${data.items[row].description}</p>`);
-                        $("#BikeContainer").append(`<p>Comfort</p>`);
+                else { // only render the specific class
+                    if (data.items[row].class.includes(bikeClassName)) {
+                        dataToRender.push(data.items[row]);
                     }
                 }
             }
-
+            // now render our data
+            renderBikes(dataToRender, bikeClassName);
         });
     }
+
+    /**
+     * Render our bikes
+     */
+    function renderBikes(rawData, bikeClassName) {
+        // blank out the div element
+        $("#BikeContainer").html('<p></p>');
+
+        for (var row in rawData) {
+            jQuery("#BikeContainer").append(`<p>${rawData[row].name}</p>`);
+            jQuery("#BikeContainer").append(`<img src='${rawData[row].image.thumb}'/>`);
+            jQuery("#BikeContainer").append(`<p>${rawData[row].description}</p>`);
+            jQuery("#BikeContainer").append(`<p>${bikeClassName}</p>`);
+        }
+    }
 </script>
+
 </html>
