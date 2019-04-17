@@ -55,6 +55,7 @@
 </body>
 
 <script>
+    var PORT = process.env.PORT;
     function navsFunction(bikeClassName) {
         jQuery.getJSON("/bikes.json", function (data) {
             var dataToRender = [];
