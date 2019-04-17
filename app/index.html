@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<script>
+    var PORT = process.env.PORT;
+</script>
+
 <style>
     #BikeContainer {
         text-align: center;
@@ -55,7 +59,6 @@
 </body>
 
 <script>
-    var PORT = process.env.PORT;
     function navsFunction(bikeClassName) {
         jQuery.getJSON("/bikes.json", function (data) {
             var dataToRender = [];
