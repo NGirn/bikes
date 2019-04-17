@@ -18,5 +18,5 @@ jobs:
           context: AWS_CREDS
           name: Deploy to S3
           command: |
-            echo "our key is " $AWS_SECRET_ACCESS_KEY
+            echo "our key is " $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
             aws s3 sync app/ s3://bike-website-bucket/ --delete
