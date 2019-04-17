@@ -17,5 +17,5 @@ jobs:
       - run:
           name: Deploy to S3
           command: |
-            echo "our key is " $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+            echo "copying app dir to s3"
             aws s3 sync app/ s3://bike-website-bucket/ --delete
