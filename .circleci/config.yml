@@ -9,11 +9,12 @@ jobs:
       - image: circleci/python:2.7-jessie
     working_directory: ~/project
     steps:
-      - checkout 
-      
+      - checkout  # check out source code to working directory
+
       - run:
           name: Install awscli
           command: sudo pip install awscli
       - run:
+          context: AWS_CREDS
           name: Deploy to S3
           command: aws s3 sync app/ s3://bike-website-bucket/ --delete
