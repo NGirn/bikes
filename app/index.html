@@ -5,6 +5,22 @@
     body {
         background: url(/img/stitched_wool/stitched_wool.png) repeat 0 0;
     }
+
+    #BikeContainer {
+        text-align: center;
+    }
+
+    #cycleRouteHead {
+        text-align: left;
+        font-size: 25px;
+    }
+
+    #viewBikes {
+        padding: 50px;
+    }
+    #monitor {
+        padding: 30px;
+    }
 </style>
 
 <head>
@@ -47,18 +63,44 @@
             </form>
         </div>
     </nav>
-    <div class="container">
+
+    <div id="monitor">
+        <div id="cycleRouteHead">
+            Cycle Route Weather Conditions Monitor In Your Local Area
+        </div>
+
+        <div class="progress" style="height: 20px;">
+            <div class="progress-bar progress-bar-success " role="progressbar" style="width:60%">
+                60% Clear Skies
+            </div>
+            <div class="progress-bar progress-bar-warning" role="progressbar" style="width:15%">
+                15% Light Rain
+            </div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:25%">
+                25% Dangerous Conditions
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-container="body"
+            data-placement="right" title="Monitor information"
+            data-content="When dangerous conditions exceed 38%, it is not advised for you to cycle in your local area.">What's
+            This For?</button>
+    </div>
+
+    <div class="container" id="viewBikes">
         <h1 id="heading">View Bikes</h1>
 
-        <div class="form-group" id="dropdown">
-            <label for="class-select">Choose a class: </label>
-            <select class="form-control" id="class-select" onchange="navsFunction($(this).val())">
-                <option>Select</option>
-                <option value="all">All Bikes</option>
-                <option value="race">Race</option>
-                <option value="endurance">Endurance</option>
-                <option value="comfort">Comfort</option>
-            </select>
+        <div class="hero-unit">
+            <div class="form-group" id="dropdown">
+                <label for="class-select">Choose a class: </label>
+                <select class="form-control" id="class-select" onchange="navsFunction($(this).val())">
+                    <option>Select</option>
+                    <option value="all">All Bikes</option>
+                    <option value="race">Race</option>
+                    <option value="endurance">Endurance</option>
+                    <option value="comfort">Comfort</option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="border">
@@ -69,14 +111,15 @@
     <div id="BikeContainerImage"></div>
     <div id="BikeContainerDescription"></div>
     <div id="BikeContainerClass"></div>
-
 </body>
 
 <footer>
-    <ul class="pager">
-        <li><a href="#">Previous</a></li>
-        <li><a href="#">Next</a></li>
-    </ul>
+    <div class="hero-unit">
+        <ul class="pager">
+            <li><a href="#">Previous</a></li>
+            <li><a href="#">Next</a></li>
+        </ul>
+    </div>
 </footer>
 
 

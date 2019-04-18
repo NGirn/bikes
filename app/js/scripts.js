@@ -1,3 +1,7 @@
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
+
 function navsFunction(bikeClassName) {
     jQuery.getJSON("/bikes.json", function (data) {
         var dataToRender = [];
@@ -33,7 +37,9 @@ function renderBikes(rawData, bikeClassName) {
         jQuery("#BikeContainer").append(`<div>${rawData[row].name}</div>`);
         jQuery("#BikeContainer").append(`<img src='${rawData[row].image.thumb}'/>`);
         jQuery("#BikeContainer").append(`<div>${rawData[row].description}</div>`);
-        jQuery("#BikeContainer").append(`<div>${bikeClassName}</div>`);
+        jQuery("#BikeContainer").append(`<div>Class: ${bikeClassName}</div>`);
+        jQuery("#BikeContainer").append(`<p>---------------------------------------------------------------------------------------------------------------------------------------</p>`);
+        jQuery("#BikeContainer").append(`<br>`);
     }
 
 }
