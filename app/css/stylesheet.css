@@ -1,29 +1,27 @@
+body {
+    background: url(/img/stitched_wool/stitched_wool.png) repeat 0 0;
+}
+
 #BikeContainer {
     text-align: center;
+}
+
+#cycleRouteHead {
+    text-align: left;
     font-size: 25px;
-    font-family: Arial;
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
 }
 
-#heading {
-    font-size: 40px;
-    background-color: grey;
+#viewBikes {
     padding: 50px;
-    margin: 20px;
-    text-align: center;
-    font-family: Arial;
 }
 
-#dropdown {
-    font-size: 30px;
-    text-align: center;
-    margin: 50px;
-    padding: 20px;
-    font-family: Arial;
-    background-color: grey;
+#monitor {
+    padding: 30px;
+}
+#signup {
+    padding:100px;;
+}
+#signupHeading {
+    font-size: 20px;
+    text-align: left;
 }
