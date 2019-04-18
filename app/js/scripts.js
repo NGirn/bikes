@@ -1,6 +1,21 @@
 $(function () {
     $('[data-toggle="popover"]').popover()
-})
+});
+
+function renderWeather(data) {
+    console.log(data);
+    var percentage = (data.current.temp_c/40)*100;
+    
+    var colorClass = "progress-bar-warning";
+    if (percentage < 15) {
+        colorClass = "progress-bar-info";
+    }
+    else if (percentage > 60) {
+        colorClass = "progress-bar-danger";
+    }
+    
+    $("#temperature").css('width', `${percentage}%`).html(`Temp is: ${data.current.temp_c} &deg;`).addClass(colorClass);
+}
 
 function navsFunction(bikeClassName) {
     jQuery.getJSON("/bikes.json", function (data) {
@@ -43,3 +58,10 @@ function renderBikes(rawData, bikeClassName) {
     }
 
 }
+
+// this will run automatically when the page is ready
+$(window).ready(function () {
+    jQuery.getJSON("http://api.apixu.com/v1/current.json?key=a98f4c2b75324c05b1f141842191804&q=Anchorage", function (data) {
+        renderWeather(data);
+    });
+});
