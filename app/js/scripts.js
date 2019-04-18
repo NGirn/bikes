@@ -25,7 +25,7 @@ function renderBikes(rawData, bikeClassName) {
     $("#BikeContainer").html('<p></p>');
 
     for (var row in rawData) {
-        jQuery("#BikeContainer").append(`<p>${rawData[row].name}</p>`);
+        jQuery("#BikeContainer").append(`<div class="bikeName bg-success">${rawData[row].name}</div>`);
         jQuery("#BikeContainer").append(`<img src='${rawData[row].image.thumb}'/>`);
         jQuery("#BikeContainer").append(`<p>${rawData[row].description}</p>`);
         jQuery("#BikeContainer").append(`<p>${bikeClassName}</p>`);
