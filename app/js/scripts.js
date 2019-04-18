@@ -23,13 +23,17 @@ function navsFunction(bikeClassName) {
 function renderBikes(rawData, bikeClassName) {
     // blank out the div element
     $("#BikeContainer").html('<p></p>');
+    $("#BikeContainerName").html('<p></p>');
+    $("#BikeContainerImage").html('<p></p>');
+    $("#BikeContainerDescription").html('<p></p>');
+    $("#BikeContainerClass").html('<p></p>');
 
 
     for (var row in rawData) {
-        jQuery("#BikeContainer").append(`<div class="bikeName">${rawData[row].name}</div>`);
-        jQuery("#BikeContainer").append(`<img class="bikeName" src='${rawData[row].image.thumb}'/>`);
-        jQuery("#BikeContainer").append(`<div class="bikeName">${rawData[row].description}</div>`);
-        jQuery("#BikeContainer").append(`<div class="bikeName">${bikeClassName}</div>`);
+        jQuery("#BikeContainer").append(`<div>${rawData[row].name}</div>`);
+        jQuery("#BikeContainer").append(`<img src='${rawData[row].image.thumb}'/>`);
+        jQuery("#BikeContainer").append(`<div>${rawData[row].description}</div>`);
+        jQuery("#BikeContainer").append(`<div>${bikeClassName}</div>`);
     }
 
 }
