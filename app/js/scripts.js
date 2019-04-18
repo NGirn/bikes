@@ -24,10 +24,12 @@ function renderBikes(rawData, bikeClassName) {
     // blank out the div element
     $("#BikeContainer").html('<p></p>');
 
+
     for (var row in rawData) {
-        jQuery("#BikeContainer").append(`<div class="bikeName bg-success">${rawData[row].name}</div>`);
-        jQuery("#BikeContainer").append(`<img src='${rawData[row].image.thumb}'/>`);
-        jQuery("#BikeContainer").append(`<p>${rawData[row].description}</p>`);
-        jQuery("#BikeContainer").append(`<p>${bikeClassName}</p>`);
+        jQuery("#BikeContainer").append(`<div class="bikeName">${rawData[row].name}</div>`);
+        jQuery("#BikeContainer").append(`<img class="bikeName" src='${rawData[row].image.thumb}'/>`);
+        jQuery("#BikeContainer").append(`<div class="bikeName">${rawData[row].description}</div>`);
+        jQuery("#BikeContainer").append(`<div class="bikeName">${bikeClassName}</div>`);
     }
+
 }
